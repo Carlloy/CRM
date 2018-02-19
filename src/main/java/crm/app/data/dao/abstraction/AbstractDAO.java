@@ -3,7 +3,7 @@ package crm.app.data.dao.abstraction;
 import java.io.Serializable;
 import java.util.List;
 
-public class AbstractDAO<T extends Serializable> extends HibernateSession<T> implements IDAO<T>{
+public abstract class AbstractDAO<T extends Serializable> extends HibernateSession<T> implements IDAO<T> {
 
     public AbstractDAO(Class<T> entityClass) {
         super(entityClass);
@@ -15,9 +15,6 @@ public class AbstractDAO<T extends Serializable> extends HibernateSession<T> imp
         try {
             beginTransaction();
             entity = getSession().get(entityClass, id);
-            transactionCommit();
-        } catch (Exception e) {
-            transactionRollback();
         } finally {
             sessionClose();
         }
@@ -32,9 +29,6 @@ public class AbstractDAO<T extends Serializable> extends HibernateSession<T> imp
         try {
             beginTransaction();
             entities = getSession().createQuery("From " + entityClass.getName()).getResultList();
-            transactionCommit();
-        } catch (Exception e) {
-            transactionRollback();
         } finally {
             sessionClose();
         }
@@ -43,9 +37,10 @@ public class AbstractDAO<T extends Serializable> extends HibernateSession<T> imp
 
     @Override
     public void create(T object) {
-        beginTransaction();
         try {
+            beginTransaction();
             getSession().save(object);
+            transactionCommit();
         } catch (Exception e) {
             transactionRollback();
         } finally {
@@ -55,9 +50,10 @@ public class AbstractDAO<T extends Serializable> extends HibernateSession<T> imp
 
     @Override
     public void update(T object) {
-        beginTransaction();
         try {
+            beginTransaction();
             getSession().update(object);
+            transactionCommit();
         } catch (Exception e) {
             transactionRollback();
         } finally {
@@ -67,9 +63,10 @@ public class AbstractDAO<T extends Serializable> extends HibernateSession<T> imp
 
     @Override
     public void createOrUpdate(T object) {
-        beginTransaction();
         try {
+            beginTransaction();
             getSession().saveOrUpdate(object);
+            transactionCommit();
         } catch (Exception e) {
             transactionRollback();
         } finally {
@@ -79,9 +76,10 @@ public class AbstractDAO<T extends Serializable> extends HibernateSession<T> imp
 
     @Override
     public void delete(T object) {
-        beginTransaction();
         try {
+            beginTransaction();
             getSession().delete(object);
+            transactionCommit();
         } catch (Exception e) {
             transactionRollback();
         } finally {
@@ -93,7 +91,6 @@ public class AbstractDAO<T extends Serializable> extends HibernateSession<T> imp
     public void deleteById(Long id) {
         T object = findById(id);
         delete(object);
-
     }
 
 }

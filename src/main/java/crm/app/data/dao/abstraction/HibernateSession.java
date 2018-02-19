@@ -3,12 +3,11 @@ package crm.app.data.dao.abstraction;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-
 import org.hibernate.cfg.Configuration;
 
 import java.io.Serializable;
 
-public abstract class HibernateSession<T extends Serializable>{
+public abstract class HibernateSession<T extends Serializable> {
 
     protected SessionFactory sessionFactory;
     protected Class<T> entityClass;
@@ -18,7 +17,7 @@ public abstract class HibernateSession<T extends Serializable>{
     public HibernateSession(Class<T> entityClass) {
         this.entityClass = entityClass;
         sessionFactory = new Configuration().
-                configure("hibernate.cfg.xml").addAnnotatedClass(entityClass).buildSessionFactory();
+                configure("hibernate.cfg.xml").buildSessionFactory();
     }
 
     protected Session openSession() {
