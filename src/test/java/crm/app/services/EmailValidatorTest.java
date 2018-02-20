@@ -1,6 +1,6 @@
 package crm.app.services;
 
-import crm.app.services.registration.Utils.EmailValidator;
+import crm.app.services.registration.utils.EmailValidator;
 import org.junit.Assert;
 import org.junit.Test;
 
