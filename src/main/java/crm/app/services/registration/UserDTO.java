@@ -1,5 +1,7 @@
 package crm.app.services.registration;
 
+import java.util.Objects;
+
 public class UserDTO {
     private String name;
     private String surname;
@@ -35,6 +37,22 @@ public class UserDTO {
         return confirmPassword;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserDTO userDTO = (UserDTO) o;
+        return Objects.equals(name, userDTO.name) &&
+                Objects.equals(surname, userDTO.surname) &&
+                Objects.equals(email, userDTO.email) &&
+                Objects.equals(password, userDTO.password) &&
+                Objects.equals(confirmPassword, userDTO.confirmPassword);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, surname, email, password, confirmPassword);
+    }
 
     public static final class UserDTOBuilder {
         private String name;
