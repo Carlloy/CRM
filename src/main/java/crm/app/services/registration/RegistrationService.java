@@ -1,5 +1,6 @@
 package crm.app.services.registration;
 import crm.app.services.registration.utils.EmailValidator;
+import crm.app.services.registration.utils.PasswordEncoder;
 import org.springframework.util.StringUtils;
 import crm.app.data.dao.AppUserDAO;
 import crm.app.data.model.AppUser;
@@ -30,33 +31,30 @@ public class RegistrationService implements IRegistrationService{
     appUserDAO.create(appUser);
     }
 
-    private boolean isEmailCorrect(UserDTO userDTO) throws InvalidCredentialsException{
-        if(EmailValidator.validate(userDTO.getEmail())){
-            return true;
+    private void isEmailCorrect(UserDTO userDTO) throws InvalidCredentialsException{
+        if(!EmailValidator.validate(userDTO.getEmail())){
+            throw new InvalidCredentialsException("Email is incorrect");
         }
-       throw new InvalidCredentialsException();
     }
-    private boolean isPasswordConfirmed(UserDTO userDTO) throws InvalidCredentialsException {
-        if(userDTO.getPassword().equals(userDTO.getConfirmPassword())){
-            return true;
+    private void isPasswordConfirmed(UserDTO userDTO) throws InvalidCredentialsException {
+        if(!(userDTO.getPassword().equals(userDTO.getConfirmPassword()))){
+            throw new InvalidCredentialsException("Passwords are not similar");
         }
-        throw new InvalidCredentialsException();
     }
 
-    private boolean isPasswordValid(UserDTO userDTO) throws InvalidCredentialsException{
+    private void isPasswordValid(UserDTO userDTO) throws InvalidCredentialsException{
         isPasswordConfirmed(userDTO);
-        if(userDTO.getPassword().length()>=6 && userDTO.getPassword().matches(" [a-z]+")&&
-                userDTO.getPassword().matches(" [A-Z]+")&& userDTO.getPassword().matches(" [0-9]+")){
-            return true;
+        if(!(userDTO.getPassword().length()>=6 && userDTO.getPassword().matches(" [a-z]+")&&
+                userDTO.getPassword().matches(" [A-Z]+")&& userDTO.getPassword().matches(" [0-9]+"))){
+            throw new InvalidCredentialsException("Password should include at least one upper, lower letter and a number");
         }
-        throw new InvalidCredentialsException();
+
     }
 
-    private boolean isValue(String value) throws InvalidCredentialsException{
-        if(!StringUtils.isEmpty(value)){
-            return true;
+    private void isValue(String value) throws InvalidCredentialsException{
+        if(StringUtils.isEmpty(value)){
+            throw new InvalidCredentialsException("Value cannot be empty or null");
         }
-        throw new InvalidCredentialsException();
     }
 
 }
