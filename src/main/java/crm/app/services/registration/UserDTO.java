@@ -34,4 +34,45 @@ public class UserDTO {
     public String getConfirmPassword() {
         return confirmPassword;
     }
+
+
+    public static final class UserDTOBuilder {
+        private String name;
+        private String surname;
+        private String email;
+        private String password;
+        private String confirmPassword;
+
+        public UserDTOBuilder() {
+        }
+
+        public UserDTOBuilder withName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public UserDTOBuilder withSurname(String surname) {
+            this.surname = surname;
+            return this;
+        }
+
+        public UserDTOBuilder withEmail(String email) {
+            this.email = email;
+            return this;
+        }
+
+        public UserDTOBuilder withPassword(String password) {
+            this.password = password;
+            return this;
+        }
+
+        public UserDTOBuilder withConfirmPassword(String confirmPassword) {
+            this.confirmPassword = confirmPassword;
+            return this;
+        }
+
+        public UserDTO build() {
+            return new UserDTO(name, surname, email, password, confirmPassword);
+        }
+    }
 }

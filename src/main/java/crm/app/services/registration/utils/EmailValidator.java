@@ -1,7 +1,6 @@
 package crm.app.services.registration.utils;
 
 import crm.app.data.dao.AppUserDAO;
-import crm.app.data.model.AppUser;
 import crm.app.services.registration.UserDTO;
 import crm.app.services.registration.exception.InvalidEmailException;
 
@@ -21,12 +20,13 @@ public class EmailValidator {
     }
 
     public static void isEmailUsed(AppUserDAO appUserDAO, UserDTO userDTO) throws InvalidEmailException {
-        if(!appUserDAO.isEmailExists(userDTO.getEmail())){
+        if (appUserDAO.isEmailExists(userDTO.getEmail())) {
             throw new InvalidEmailException("Email is already used");
         }
     }
-    public static void isEmailCorrect(UserDTO userDTO) throws InvalidEmailException{
-        if(!EmailValidator.validate(userDTO.getEmail())){
+
+    public static void isEmailCorrect(UserDTO userDTO) throws InvalidEmailException {
+        if (!EmailValidator.validate(userDTO.getEmail())) {
             throw new InvalidEmailException("Email is incorrect");
         }
     }
