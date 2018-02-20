@@ -8,6 +8,7 @@ public class EmailValidatorTest {
     @Test
     public void validate() throws Exception {
         Assert.assertTrue(EmailValidator.validate("kacper.test@gmail.com"));
+        Assert.assertFalse(EmailValidator.validate("kacper.testgmail.com"));
     }
 
 }
