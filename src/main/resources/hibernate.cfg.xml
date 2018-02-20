@@ -7,7 +7,7 @@
     <session-factory>
 
         <!-- JDBC Database connection settings -->
-        <property name="cSonnection.driver_class">org.postgresql.Driver</property>
+        <property name="connection.driver_class">org.postgresql.Driver</property>
         <property name="connection.url">jdbc:postgresql://localhost:5432/postgres</property>
         <property name="connection.username">postgres</property>
         <property name="connection.password">maliny23</property>
