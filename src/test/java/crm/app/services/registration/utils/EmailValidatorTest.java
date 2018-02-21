@@ -37,4 +37,15 @@ public class EmailValidatorTest {
     }
 
 
+    @Test(expected = InvalidEmailException.class)
+    public void if_format_of_email_is_incorrect_raise_exception() throws InvalidEmailException{
+        EmailValidator.isEmailCorrect(new UserDTO.UserDTOBuilder().withEmail("email.gmail.com").build());
+    }
+
+    @Test
+    public void if_format_of_email_is_correct_should_pass() throws InvalidEmailException{
+        EmailValidator.isEmailCorrect(new UserDTO.UserDTOBuilder().withEmail("email@gmail.com").build());
+    }
+
+
 }

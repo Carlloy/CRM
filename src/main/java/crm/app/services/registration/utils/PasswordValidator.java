@@ -12,8 +12,7 @@ public class PasswordValidator {
     }
 
     public static void isPasswordValid(UserDTO userDTO) throws InvalidPasswordException{
-        if(!(userDTO.getPassword().length()>=6 && userDTO.getPassword().matches(" [a-z]+")&&
-                userDTO.getPassword().matches(" [A-Z]+")&& userDTO.getPassword().matches(" [0-9]+"))){
+        if(!(userDTO.getPassword().matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{6,}$"))){
             throw new InvalidPasswordException("Password should include at least one upper, lower letter and a number");
         }
 

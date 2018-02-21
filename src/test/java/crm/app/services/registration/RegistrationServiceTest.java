@@ -33,10 +33,10 @@ public class RegistrationServiceTest {
 
     @Test
     public void when_fields_are_ok_dto_should_be_saved() throws InvalidCredentialsException {
-        UserDTO userDTO = new UserDTO("Andrzej", "Krul", "andrzej.krul@gmail.com", "Password123", "Passwrd123");
+        UserDTO userDTO = new UserDTO("Andrzej", "Krul", "andrzej.krul@gmail.com", "Password123", "Password123");
         UserDTO userDTOByBuilder = new UserDTO.UserDTOBuilder().
                 withName("Andrzej").
-                withSurname("krul").
+                withSurname("Krul").
                 withEmail("andrzej.krul@gmail.com").
                 withPassword("Password123").
                 withConfirmPassword("Password123").build();
