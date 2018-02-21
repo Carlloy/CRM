@@ -2,7 +2,7 @@ package crm.app.services.registration;
 
 import crm.app.data.dao.AppUserDAO;
 import crm.app.services.registration.exception.InvalidCredentialsException;
-import org.junit.Assert;
+import crm.app.services.registration.transfer.UserDTO;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,8 +1,8 @@
 package crm.app.services.registration.utils;
 
 import crm.app.data.dao.AppUserDAO;
-import crm.app.services.registration.UserDTO;
 import crm.app.services.registration.exception.InvalidEmailException;
+import crm.app.services.registration.transfer.UserDTO;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,12 +38,12 @@ public class EmailValidatorTest {
 
 
     @Test(expected = InvalidEmailException.class)
-    public void if_format_of_email_is_incorrect_raise_exception() throws InvalidEmailException{
+    public void if_format_of_email_is_incorrect_raise_exception() throws InvalidEmailException {
         EmailValidator.isEmailCorrect(new UserDTO.UserDTOBuilder().withEmail("email.gmail.com").build());
     }
 
     @Test
-    public void if_format_of_email_is_correct_should_pass() throws InvalidEmailException{
+    public void if_format_of_email_is_correct_should_pass() throws InvalidEmailException {
         EmailValidator.isEmailCorrect(new UserDTO.UserDTOBuilder().withEmail("email@gmail.com").build());
     }
 

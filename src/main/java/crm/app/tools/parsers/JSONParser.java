@@ -34,4 +34,15 @@ public class JSONParser<T> {
         }
         return obj;
     }
+
+    public static Object parseJSON(String json, Class<?> tClass) {
+        ObjectMapper mapper = new ObjectMapper();
+        Object obj = null;
+        try {
+            obj = mapper.readValue(json, tClass);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return obj;
+    }
 }
