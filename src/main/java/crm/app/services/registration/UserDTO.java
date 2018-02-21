@@ -1,5 +1,7 @@
 package crm.app.services.registration;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Objects;
 
 public class UserDTO {
@@ -9,7 +11,8 @@ public class UserDTO {
     private String password;
     private String confirmPassword;
 
-    public UserDTO(String name, String surname, String email, String password, String confirmPassword) {
+    public UserDTO(@JsonProperty("name") String name, @JsonProperty("surname") String surname,
+                   @JsonProperty("email") String email, @JsonProperty("password") String password, @JsonProperty("confirmPassword") String confirmPassword) {
         this.name = name;
         this.surname = surname;
         this.email = email;
