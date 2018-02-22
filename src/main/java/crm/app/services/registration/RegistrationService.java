@@ -3,7 +3,6 @@ package crm.app.services.registration;
 import crm.app.data.dao.AppUserDAO;
 import crm.app.data.model.AppUser;
 import crm.app.services.registration.exception.InvalidCredentialsException;
-import crm.app.services.registration.transfer.UserDTO;
 import crm.app.services.registration.utils.EmailValidator;
 import crm.app.services.registration.utils.PasswordEncoder;
 import crm.app.services.registration.utils.PasswordValidator;
