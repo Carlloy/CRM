@@ -13,8 +13,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class RegistrationService implements IRegistrationService {
 
+    private final AppUserDAO appUserDAO;
+
     @Autowired
-    private AppUserDAO appUserDAO;
+    public RegistrationService(AppUserDAO appUserDAO) {
+        this.appUserDAO = appUserDAO;
+    }
 
     @Override
     public void registration(RegistrationUserDTO userDTO) throws InvalidCredentialsException {

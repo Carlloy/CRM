@@ -13,13 +13,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class RegistrationController {
+    private final IRegistrationService registrationService;
+
     @Autowired
-    private IRegistrationService registrationService;
+    public RegistrationController(IRegistrationService registrationService) {
+        this.registrationService = registrationService;
+    }
 
     @RequestMapping(value = "/registerUser", method = RequestMethod.POST)
-    public ResponseEntity< String > registerUser(@RequestBody RegistrationUserDTO userDTO) throws InvalidCredentialsException {
-            registrationService.registration(userDTO);
-            return ResponseEntity.status(HttpStatus.CREATED).build();
+    public ResponseEntity<String> registerUser(@RequestBody RegistrationUserDTO userDTO) throws InvalidCredentialsException {
+        registrationService.registration(userDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
 }
