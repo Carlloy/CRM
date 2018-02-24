@@ -1,6 +1,6 @@
-package crm.app.services.registration;
+package crm.app.services.user.registration;
 
-import crm.app.services.registration.exception.InvalidCredentialsException;
+import crm.app.services.user.registration.exception.InvalidCredentialsException;
 
 public interface IRegistrationService {
 

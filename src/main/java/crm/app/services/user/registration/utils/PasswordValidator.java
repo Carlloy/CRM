@@ -1,7 +1,7 @@
-package crm.app.services.registration.utils;
+package crm.app.services.user.registration.utils;
 
-import crm.app.services.registration.RegistrationUserDTO;
-import crm.app.services.registration.exception.InvalidPasswordException;
+import crm.app.services.user.registration.RegistrationUserDTO;
+import crm.app.services.user.registration.exception.InvalidPasswordException;
 
 public class PasswordValidator {
 

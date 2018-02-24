@@ -1,8 +1,8 @@
-package crm.app.services.registration.utils;
+package crm.app.services.user.registration.utils;
 
 import crm.app.data.dao.AppUserDAO;
-import crm.app.services.registration.RegistrationUserDTO;
-import crm.app.services.registration.exception.InvalidEmailException;
+import crm.app.services.user.registration.RegistrationUserDTO;
+import crm.app.services.user.registration.exception.InvalidEmailException;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

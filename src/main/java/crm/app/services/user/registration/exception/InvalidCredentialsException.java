@@ -1,4 +1,4 @@
-package crm.app.services.registration.exception;
+package crm.app.services.user.registration.exception;
 
 public class InvalidCredentialsException extends Exception{
     public InvalidCredentialsException(String message) {

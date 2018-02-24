@@ -1,12 +1,12 @@
-package crm.app.services.registration;
+package crm.app.services.user.registration;
 
 import crm.app.data.dao.AppUserDAO;
 import crm.app.data.model.AppUser;
-import crm.app.services.registration.exception.InvalidCredentialsException;
-import crm.app.services.registration.utils.EmailValidator;
-import crm.app.services.registration.utils.PasswordEncoder;
-import crm.app.services.registration.utils.PasswordValidator;
-import crm.app.services.registration.utils.ValueValidator;
+import crm.app.services.user.registration.exception.InvalidCredentialsException;
+import crm.app.services.user.registration.utils.EmailValidator;
+import crm.app.services.user.registration.utils.PasswordEncoder;
+import crm.app.services.user.registration.utils.PasswordValidator;
+import crm.app.services.user.registration.utils.ValueValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

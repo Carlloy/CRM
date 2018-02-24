@@ -1,7 +1,8 @@
 package crm.app.services.registration.utils;
 
-import crm.app.services.registration.RegistrationUserDTO;
-import crm.app.services.registration.exception.InvalidPasswordException;
+import crm.app.services.user.registration.RegistrationUserDTO;
+import crm.app.services.user.registration.exception.InvalidPasswordException;
+import crm.app.services.user.registration.utils.PasswordValidator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;

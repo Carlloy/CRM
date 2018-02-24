@@ -1,8 +1,9 @@
 package crm.app.services.registration.utils;
 
 import crm.app.data.dao.AppUserDAO;
-import crm.app.services.registration.RegistrationUserDTO;
-import crm.app.services.registration.exception.InvalidEmailException;
+import crm.app.services.user.registration.RegistrationUserDTO;
+import crm.app.services.user.registration.exception.InvalidEmailException;
+import crm.app.services.user.registration.utils.EmailValidator;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

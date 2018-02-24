@@ -1,4 +1,4 @@
-package crm.app.services.registration;
+package crm.app.services.user.registration;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

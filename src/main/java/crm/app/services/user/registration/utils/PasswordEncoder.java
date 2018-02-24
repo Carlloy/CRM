@@ -1,4 +1,4 @@
-package crm.app.services.registration.utils;
+package crm.app.services.user.registration.utils;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 

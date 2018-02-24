@@ -1,6 +1,7 @@
 package crm.app.services.registration.utils;
 
-import crm.app.services.registration.exception.InvalidValueException;
+import crm.app.services.user.registration.exception.InvalidValueException;
+import crm.app.services.user.registration.utils.ValueValidator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;

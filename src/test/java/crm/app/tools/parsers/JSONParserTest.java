@@ -1,6 +1,6 @@
 package crm.app.tools.parsers;
 
-import crm.app.services.registration.RegistrationUserDTO;
+import crm.app.services.user.registration.RegistrationUserDTO;
 import org.junit.Assert;
 import org.junit.Test;
 

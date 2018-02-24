@@ -1,6 +1,6 @@
-package crm.app.services.registration.utils;
+package crm.app.services.user.registration.utils;
 
-import crm.app.services.registration.exception.InvalidValueException;
+import crm.app.services.user.registration.exception.InvalidValueException;
 import org.springframework.util.StringUtils;
 
 public class ValueValidator {
