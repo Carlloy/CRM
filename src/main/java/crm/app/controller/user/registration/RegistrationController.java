@@ -1,6 +1,6 @@
 package crm.app.controller.user.registration;
 
-import crm.app.services.user.registration.RegistrationService;
+import crm.app.services.user.registration.IRegistrationService;
 import crm.app.services.user.registration.RegistrationUserDTO;
 import crm.app.services.user.registration.exception.InvalidCredentialsException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class RegistrationController {
     @Autowired
-    private RegistrationService registrationService;
+    private IRegistrationService registrationService;
 
     @RequestMapping(value = "/registerUser", method = RequestMethod.POST)
     public ResponseEntity< String > registerUser(@RequestBody RegistrationUserDTO userDTO) throws InvalidCredentialsException {

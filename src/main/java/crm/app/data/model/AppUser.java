@@ -22,6 +22,8 @@ public class AppUser implements Serializable {
     private String password;
     @Column(nullable = false, length = 25, unique = true)
     private String email;
+    @Column()
+    private Integer AppUserType_ID;
 
     public Long getId() {
         return id;
