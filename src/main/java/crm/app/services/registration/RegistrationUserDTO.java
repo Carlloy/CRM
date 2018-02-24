@@ -4,15 +4,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Objects;
 
-public class UserDTO {
+public class RegistrationUserDTO {
     private String name;
     private String surname;
     private String email;
     private String password;
     private String confirmPassword;
 
-    public UserDTO(@JsonProperty("name") String name, @JsonProperty("surname") String surname,
-                   @JsonProperty("email") String email, @JsonProperty("password") String password, @JsonProperty("confirmPassword") String confirmPassword) {
+    public RegistrationUserDTO(@JsonProperty("name") String name, @JsonProperty("surname") String surname,
+                               @JsonProperty("email") String email, @JsonProperty("password") String password, @JsonProperty("confirmPassword") String confirmPassword) {
         this.name = name;
         this.surname = surname;
         this.email = email;
@@ -44,7 +44,7 @@ public class UserDTO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UserDTO userDTO = (UserDTO) o;
+        RegistrationUserDTO userDTO = (RegistrationUserDTO) o;
         return Objects.equals(name, userDTO.name) &&
                 Objects.equals(surname, userDTO.surname) &&
                 Objects.equals(email, userDTO.email) &&
@@ -92,8 +92,8 @@ public class UserDTO {
             return this;
         }
 
-        public UserDTO build() {
-            return new UserDTO(name, surname, email, password, confirmPassword);
+        public RegistrationUserDTO build() {
+            return new RegistrationUserDTO(name, surname, email, password, confirmPassword);
         }
     }
 }

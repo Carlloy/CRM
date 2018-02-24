@@ -1,7 +1,7 @@
 package crm.app.services.registration.utils;
 
 import crm.app.data.dao.AppUserDAO;
-import crm.app.services.registration.UserDTO;
+import crm.app.services.registration.RegistrationUserDTO;
 import crm.app.services.registration.exception.InvalidEmailException;
 
 import java.util.regex.Matcher;
@@ -19,13 +19,13 @@ public class EmailValidator {
         return matcher.matches();
     }
 
-    public static void isEmailUsed(AppUserDAO appUserDAO, UserDTO userDTO) throws InvalidEmailException {
+    public static void isEmailUsed(AppUserDAO appUserDAO, RegistrationUserDTO userDTO) throws InvalidEmailException {
         if (appUserDAO.isEmailExists(userDTO.getEmail())) {
             throw new InvalidEmailException("Email is already used");
         }
     }
 
-    public static void isEmailCorrect(UserDTO userDTO) throws InvalidEmailException {
+    public static void isEmailCorrect(RegistrationUserDTO userDTO) throws InvalidEmailException {
         if (!EmailValidator.validate(userDTO.getEmail())) {
             throw new InvalidEmailException("Email is incorrect");
         }

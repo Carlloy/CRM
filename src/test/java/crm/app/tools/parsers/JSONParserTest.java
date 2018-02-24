@@ -1,6 +1,6 @@
 package crm.app.tools.parsers;
 
-import crm.app.services.registration.UserDTO;
+import crm.app.services.registration.RegistrationUserDTO;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -12,7 +12,7 @@ public class JSONParserTest {
 
     @Test
     public void parseJSON() {
-        JSONParser<UserDTO> jsonParser = new JSONParser<>(UserDTO.class);
+        JSONParser<RegistrationUserDTO> jsonParser = new JSONParser<>(RegistrationUserDTO.class);
         StringBuilder json = new StringBuilder();
         json.append("{");
         json.append("\"name\" : \"Andrzej\",");
@@ -22,9 +22,9 @@ public class JSONParserTest {
         json.append("\"confirmPassword\" : \"password\"");
         json.append("}");
 
-        UserDTO userDTO = jsonParser.parseJSON(json.toString());
+        RegistrationUserDTO userDTO = jsonParser.parseJSON(json.toString());
 
-        UserDTO expectedResult = new UserDTO.UserDTOBuilder().
+        RegistrationUserDTO expectedResult = new RegistrationUserDTO.UserDTOBuilder().
                 withName("Andrzej").
                 withSurname("surname").
                 withEmail("email").

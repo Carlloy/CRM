@@ -2,7 +2,6 @@ package crm.app.services.registration;
 
 import crm.app.data.dao.AppUserDAO;
 import crm.app.services.registration.exception.InvalidCredentialsException;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,8 +32,8 @@ public class RegistrationServiceTest {
 
     @Test
     public void when_fields_are_ok_dto_should_be_saved() throws InvalidCredentialsException {
-        UserDTO userDTO = new UserDTO("Andrzej", "Krul", "andrzej.krul@gmail.com", "Password123", "Password123");
-        UserDTO userDTOByBuilder = new UserDTO.UserDTOBuilder().
+        RegistrationUserDTO userDTO = new RegistrationUserDTO("Andrzej", "Krul", "andrzej.krul@gmail.com", "Password123", "Password123");
+        RegistrationUserDTO userDTOByBuilder = new RegistrationUserDTO.UserDTOBuilder().
                 withName("Andrzej").
                 withSurname("Krul").
                 withEmail("andrzej.krul@gmail.com").

@@ -1,7 +1,7 @@
 package crm.app.services.registration.utils;
 
 import crm.app.data.dao.AppUserDAO;
-import crm.app.services.registration.UserDTO;
+import crm.app.services.registration.RegistrationUserDTO;
 import crm.app.services.registration.exception.InvalidEmailException;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,23 +28,23 @@ public class EmailValidatorTest {
 
     @Test(expected = InvalidEmailException.class)
     public void if_email_exists_in_db_raise_exception() throws InvalidEmailException {
-        EmailValidator.isEmailUsed(appUserDAO, new UserDTO.UserDTOBuilder().withEmail("email.exists.in.db@gmail.com").build());
+        EmailValidator.isEmailUsed(appUserDAO, new RegistrationUserDTO.UserDTOBuilder().withEmail("email.exists.in.db@gmail.com").build());
     }
 
     @Test
     public void if_email_not_exists_in_db_method_should_pass() throws InvalidEmailException {
-        EmailValidator.isEmailUsed(appUserDAO, new UserDTO.UserDTOBuilder().withEmail("email.not.exists.in.db@gmail.com").build());
+        EmailValidator.isEmailUsed(appUserDAO, new RegistrationUserDTO.UserDTOBuilder().withEmail("email.not.exists.in.db@gmail.com").build());
     }
 
 
     @Test(expected = InvalidEmailException.class)
     public void if_format_of_email_is_incorrect_raise_exception() throws InvalidEmailException{
-        EmailValidator.isEmailCorrect(new UserDTO.UserDTOBuilder().withEmail("email.gmail.com").build());
+        EmailValidator.isEmailCorrect(new RegistrationUserDTO.UserDTOBuilder().withEmail("email.gmail.com").build());
     }
 
     @Test
     public void if_format_of_email_is_correct_should_pass() throws InvalidEmailException{
-        EmailValidator.isEmailCorrect(new UserDTO.UserDTOBuilder().withEmail("email@gmail.com").build());
+        EmailValidator.isEmailCorrect(new RegistrationUserDTO.UserDTOBuilder().withEmail("email@gmail.com").build());
     }
 
 

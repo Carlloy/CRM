@@ -17,7 +17,7 @@ public class RegistrationService implements IRegistrationService {
     private AppUserDAO appUserDAO;
 
     @Override
-    public void registration(UserDTO userDTO) throws InvalidCredentialsException {
+    public void registration(RegistrationUserDTO userDTO) throws InvalidCredentialsException {
         AppUser appUser = new AppUser();
         EmailValidator.isEmailCorrect(userDTO);
         EmailValidator.isEmailUsed(appUserDAO, userDTO);
