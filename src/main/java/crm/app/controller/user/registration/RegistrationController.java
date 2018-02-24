@@ -1,8 +1,8 @@
 package crm.app.controller.user.registration;
 
+import crm.app.services.user.exception.InvalidCredentialsException;
 import crm.app.services.user.registration.IRegistrationService;
 import crm.app.services.user.registration.RegistrationUserDTO;
-import crm.app.services.user.registration.exception.InvalidCredentialsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,9 +1,10 @@
 package crm.app.services.registration;
 
+import crm.app.configuration.PasswordEncoderConfig;
 import crm.app.data.dao.AppUserDAO;
+import crm.app.services.user.exception.InvalidCredentialsException;
 import crm.app.services.user.registration.RegistrationService;
 import crm.app.services.user.registration.RegistrationUserDTO;
-import crm.app.services.user.registration.exception.InvalidCredentialsException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,7 +18,7 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {RegistrationService.class, AppUserDAO.class})
+@ContextConfiguration(classes = {RegistrationService.class, AppUserDAO.class, PasswordEncoderConfig.class})
 public class RegistrationServiceTest {
 
     @Autowired
@@ -35,12 +36,7 @@ public class RegistrationServiceTest {
     @Test
     public void when_fields_are_ok_dto_should_be_saved() throws InvalidCredentialsException {
         RegistrationUserDTO userDTO = new RegistrationUserDTO("Andrzej", "Krul", "andrzej.krul@gmail.com", "Password123", "Password123");
-        RegistrationUserDTO userDTOByBuilder = new RegistrationUserDTO.UserDTOBuilder().
-                withName("Andrzej").
-                withSurname("Krul").
-                withEmail("andrzej.krul@gmail.com").
-                withPassword("Password123").
-                withConfirmPassword("Password123").build();
+
         registrationService.registration(userDTO);
     }
 

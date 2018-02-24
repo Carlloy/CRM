@@ -2,12 +2,12 @@ package crm.app.services.user.registration;
 
 import crm.app.data.dao.AppUserDAO;
 import crm.app.data.model.AppUser;
-import crm.app.services.user.registration.exception.InvalidCredentialsException;
-import crm.app.services.user.registration.utils.EmailValidator;
-import crm.app.services.user.registration.utils.PasswordEncoder;
-import crm.app.services.user.registration.utils.PasswordValidator;
-import crm.app.services.user.registration.utils.ValueValidator;
+import crm.app.services.user.exception.InvalidCredentialsException;
+import crm.app.services.user.utils.EmailValidator;
+import crm.app.services.user.utils.PasswordValidator;
+import crm.app.services.user.utils.ValueValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,9 +15,12 @@ public class RegistrationService implements IRegistrationService {
 
     private final AppUserDAO appUserDAO;
 
+    private final PasswordEncoder passwordEncoder;
+
     @Autowired
-    public RegistrationService(AppUserDAO appUserDAO) {
+    public RegistrationService(AppUserDAO appUserDAO, PasswordEncoder passwordEncoder) {
         this.appUserDAO = appUserDAO;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -32,7 +35,7 @@ public class RegistrationService implements IRegistrationService {
         appUser.setName(userDTO.getName());
         appUser.setSurname(userDTO.getSurname());
         appUser.setEmail(userDTO.getEmail());
-        appUser.setPassword(PasswordEncoder.encode(userDTO.getPassword()));
+        appUser.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         appUserDAO.create(appUser);
     }
 

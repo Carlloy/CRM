@@ -1,7 +1,7 @@
 package crm.app.services.registration.utils;
 
-import crm.app.services.user.registration.exception.InvalidValueException;
-import crm.app.services.user.registration.utils.ValueValidator;
+import crm.app.services.user.exception.InvalidValueException;
+import crm.app.services.user.utils.ValueValidator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -10,16 +10,17 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class ValueValidatorTest {
 
     @Test(expected = InvalidValueException.class)
-    public void when_value_is_null()throws InvalidValueException{
-    ValueValidator.isValue(null);
-}
+    public void when_value_is_null() throws InvalidValueException {
+        ValueValidator.isValue(null);
+    }
+
     @Test(expected = InvalidValueException.class)
-    public void when_value_is_empty()throws InvalidValueException{
+    public void when_value_is_empty() throws InvalidValueException {
         ValueValidator.isValue("");
     }
 
     @Test
-    public void when_value_exists() throws InvalidValueException{
+    public void when_value_exists() throws InvalidValueException {
         ValueValidator.isValue("wartość");
     }
 
