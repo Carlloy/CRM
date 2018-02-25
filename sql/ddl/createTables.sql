@@ -1,4 +1,6 @@
-DROP TABLE IF EXISTS APPUSER;
+﻿DROP TABLE IF EXISTS APPUSER;
+DROP TABLE IF EXISTS APPUSERROLE;
+
 
 
 CREATE TABLE IF NOT EXISTS APPUSER (
@@ -6,16 +8,21 @@ CREATE TABLE IF NOT EXISTS APPUSER (
   NAME           VARCHAR(25) NOT NULL,
   SURNAME        VARCHAR(25) NOT NULL,
   PASSWORD       VARCHAR(60) NOT NULL DEFAULT ('test'),
-  EMAIL          TEXT        NOT NULL UNIQUE,
-  APPUSERTYPE_ID INT                  DEFAULT 5
+  EMAIL          TEXT        NOT NULL UNIQUE
 );
+CREATE TABLE IF NOT EXISTS APPUSERROLE(
+ID BIGSERIAL PRIMARY KEY,
+APPUSER_FK bigint REFERENCES APPUSER(ID),
+ROLE VARCHAR(25) NOT NULL
+);
+INSERT INTO appuser (name, surname, email) VALUES
+  ('zbyszko', 'zBogdanca', 'admin@gmail.com'),
+  ('tadzio', 'spod sklepu', 'tadek@gmail.com');
 
-ALTER TABLE APPUSER
-  ADD CHECK (APPUSERTYPE_ID = 1 OR APPUSERTYPE_ID = 5);
-
-INSERT INTO appuser (name, surname, email, APPUSERTYPE_ID) VALUES
-  ('zbyszko', 'zBogdanca', 'admin@gmail.com', 1),
-  ('tadzio', 'spod sklepu', 'tadek@gmail.com', 5);
+INSERT INTO APPUSERROLE(APPUSER_FK, ROLE) VALUES
+((SELECT ID FROM APPUSER WHERE EMAIL = 'admin@gmail.com'),'USER'),
+((SELECT ID FROM APPUSER WHERE EMAIL = 'tadek@gmail.com'),'USER'),
+((SELECT ID FROM APPUSER WHERE EMAIL = 'admin@gmail.com'),'ADMIN');
 
 
 SELECT *
