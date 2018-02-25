@@ -1,12 +1,16 @@
 package crm.app.data.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "APPUSER")
@@ -22,8 +26,9 @@ public class AppUser implements Serializable {
     private String password;
     @Column(nullable = false, length = 25, unique = true)
     private String email;
-    @Column()
-    private Integer AppUserType_ID;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<AppUserRole> roles;
 
     public Long getId() {
         return id;
@@ -67,4 +72,11 @@ public class AppUser implements Serializable {
         this.email = email;
     }
 
+    public List<AppUserRole> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<AppUserRole> roles) {
+        this.roles = roles;
+    }
 }
