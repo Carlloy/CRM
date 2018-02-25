@@ -31,4 +31,13 @@ public class AppUserDAO extends AbstractDAO<AppUser> {
         return (result == 1) ? Boolean.TRUE : Boolean.FALSE;
     }
 
+    public AppUser findByEmail(String email) {
+        beginTransaction();
+        CriteriaBuilder criteriaBuilder = getSession().getCriteriaBuilder();
+        CriteriaQuery<AppUser> criteriaQuery = criteriaBuilder.createQuery(AppUser.class);
+        Root<AppUser> appUser = criteriaQuery.from(AppUser.class);
+        criteriaQuery.where(criteriaBuilder.equal(appUser.get("email"), email));
+        return getSession().createQuery(criteriaQuery).getSingleResult();
+    }
+
 }

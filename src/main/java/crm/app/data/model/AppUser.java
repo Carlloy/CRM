@@ -75,7 +75,7 @@ public class AppUser implements Serializable {
         return role;
     }
 
-    public void setRole(List<Role> roles) {
+    public void setRoles(List<Role> roles) {
         this.role = roles;
     }
 
@@ -139,7 +139,7 @@ public class AppUser implements Serializable {
             appUser.setSurname(surname);
             appUser.setPassword(password);
             appUser.setEmail(email);
-            appUser.setRole(roles);
+            appUser.setRoles(roles);
             return appUser;
         }
     }

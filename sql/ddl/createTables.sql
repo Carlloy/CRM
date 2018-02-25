@@ -20,9 +20,6 @@ CREATE TABLE IF NOT EXISTS appuser_role (
   role_id    BIGINT NOT NULL REFERENCES role (ID)
 
 );
-INSERT INTO role (name) VALUES ('admin'), ('user'), ('blocked');
-
-
 CREATE OR REPLACE FUNCTION appuser_role() RETURNS TRIGGER AS
 $$
 BEGIN
@@ -32,12 +29,13 @@ END;
 $$
 LANGUAGE 'plpgsql';
 
-
 CREATE TRIGGER add_default_role
   AFTER INSERT
   ON appuser
   FOR EACH ROW
 EXECUTE PROCEDURE appuser_role();
+
+INSERT INTO role (name) VALUES ('admin'), ('user'), ('blocked');
 
 INSERT INTO appuser (NAME, SURNAME, EMAIL) VALUES
   ('janek', 'admin', 'admin@gmail.com'),
