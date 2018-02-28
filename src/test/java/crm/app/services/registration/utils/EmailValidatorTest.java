@@ -1,6 +1,6 @@
 package crm.app.services.registration.utils;
 
-import crm.app.data.dao.AppUserDAO;
+import crm.app.data.dao.interfaces.IAppUserDAO;
 import crm.app.services.user.exception.InvalidEmailException;
 import crm.app.services.user.registration.RegistrationUserDTO;
 import crm.app.services.user.utils.EmailValidator;
@@ -17,7 +17,7 @@ import static org.mockito.Mockito.when;
 public class EmailValidatorTest {
 
     @Mock
-    private AppUserDAO appUserDAO;
+    private IAppUserDAO appUserDAO;
 
     @Before
     public void setUp() {

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.io.Serializable;
 import java.util.List;
 
@@ -13,7 +14,7 @@ public abstract class AbstractDAO<T extends Serializable> implements IDAO<T> {
     @Autowired
     protected SessionFactory sessionFactory;
 
-    protected Class<T> entityClass;
+    private Class<T> entityClass;
 
     public AbstractDAO(Class<T> entityClass) {
         this.entityClass = entityClass;
@@ -29,6 +30,8 @@ public abstract class AbstractDAO<T extends Serializable> implements IDAO<T> {
     public List<T> findAll() {
         CriteriaBuilder criteriaBuilder = sessionFactory.getCriteriaBuilder();
         CriteriaQuery<T> criteriaQuery = criteriaBuilder.createQuery(entityClass);
+        Root<T> appUser = criteriaQuery.from(entityClass);
+        criteriaQuery.select(appUser);
         return sessionFactory.getCurrentSession().createQuery(criteriaQuery).getResultList();
     }
 

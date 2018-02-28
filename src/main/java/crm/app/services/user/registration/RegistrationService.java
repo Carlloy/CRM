@@ -1,6 +1,6 @@
 package crm.app.services.user.registration;
 
-import crm.app.data.dao.AppUserDAO;
+import crm.app.data.dao.interfaces.IAppUserDAO;
 import crm.app.data.model.AppUser;
 import crm.app.services.user.exception.InvalidCredentialsException;
 import crm.app.services.user.utils.EmailValidator;
@@ -13,12 +13,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class RegistrationService implements IRegistrationService {
 
-    private final AppUserDAO appUserDAO;
+    private final IAppUserDAO appUserDAO;
 
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public RegistrationService(AppUserDAO appUserDAO, PasswordEncoder passwordEncoder) {
+    public RegistrationService(IAppUserDAO appUserDAO, PasswordEncoder passwordEncoder) {
         this.appUserDAO = appUserDAO;
         this.passwordEncoder = passwordEncoder;
     }

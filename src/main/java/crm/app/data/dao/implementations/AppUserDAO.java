@@ -1,6 +1,7 @@
-package crm.app.data.dao;
+package crm.app.data.dao.implementations;
 
 import crm.app.data.dao.abstraction.AbstractDAO;
+import crm.app.data.dao.interfaces.IAppUserDAO;
 import crm.app.data.model.AppUser;
 import org.springframework.stereotype.Repository;
 
@@ -8,9 +9,8 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
-
 @Repository
-public class AppUserDAO extends AbstractDAO<AppUser> {
+public class AppUserDAO extends AbstractDAO<AppUser> implements IAppUserDAO {
 
     public AppUserDAO() {
         super(AppUser.class);
