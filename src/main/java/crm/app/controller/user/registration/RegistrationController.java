@@ -1,10 +1,10 @@
 package crm.app.controller.user.registration;
 
 import crm.app.data.model.AppUser;
-import crm.app.services.user.IUserService;
 import crm.app.services.user.exception.InvalidCredentialsException;
-import crm.app.services.user.registration.IRegistrationService;
+import crm.app.services.user.registration.RegistrationService;
 import crm.app.services.user.registration.RegistrationUserDTO;
+import crm.app.services.user.usermanagement.UserManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,16 +15,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RequestMapping(value = "/user")
+@RequestMapping(value = "/api")
 @RestController
 public class RegistrationController {
 
-    private final IRegistrationService registrationService;
+    private final RegistrationService registrationService;
 
-    private final IUserService userService;
+    private final UserManagementService userService;
 
     @Autowired
-    public RegistrationController(IRegistrationService registrationService, IUserService userService) {
+    public RegistrationController(RegistrationService registrationService, UserManagementService userService) {
         this.registrationService = registrationService;
         this.userService = userService;
     }

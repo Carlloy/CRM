@@ -11,17 +11,17 @@ public class ValueValidatorTest {
 
     @Test(expected = InvalidValueException.class)
     public void when_value_is_null() throws InvalidValueException {
-        ValueValidator.isValue(null);
+        ValueValidator.isValue("name", null);
     }
 
     @Test(expected = InvalidValueException.class)
     public void when_value_is_empty() throws InvalidValueException {
-        ValueValidator.isValue("");
+        ValueValidator.isValue("name", "");
     }
 
     @Test
     public void when_value_exists() throws InvalidValueException {
-        ValueValidator.isValue("wartość");
+        ValueValidator.isValue("some", "wartość");
     }
 
 }

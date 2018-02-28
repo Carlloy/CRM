@@ -11,7 +11,7 @@ import java.util.List;
 
 public class AuthUserDetails implements UserDetails {
 
-    private static final String userBlocked = "BLOCKED";
+    private static final String USER_BLOCKED = "BLOCKED";
     private final String userName;
     private final String password;
     private List<GrantedAuthority> authorities;
@@ -20,7 +20,7 @@ public class AuthUserDetails implements UserDetails {
         this.userName = appUser.getEmail();
         this.password = appUser.getPassword();
         authorities = new ArrayList<>();
-        appUser.getRole().forEach(role -> authorities.add(new SimpleGrantedAuthority(role.getName().toUpperCase())));
+        appUser.getRole().forEach(role -> authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getName().toUpperCase())));
     }
 
     @Override
@@ -45,7 +45,7 @@ public class AuthUserDetails implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return authorities.stream().noneMatch(s -> s.getAuthority().equals(userBlocked));
+        return authorities.stream().noneMatch(s -> s.getAuthority().equals(USER_BLOCKED));
     }
 
     @Override

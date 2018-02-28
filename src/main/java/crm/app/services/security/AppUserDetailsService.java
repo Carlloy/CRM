@@ -1,6 +1,6 @@
 package crm.app.services.security;
 
-import crm.app.data.dao.interfaces.IAppUserDAO;
+import crm.app.data.dao.interfaces.AppUserDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,13 +11,12 @@ import org.springframework.stereotype.Service;
 public class AppUserDetailsService implements UserDetailsService {
 
     @Autowired
-    IAppUserDAO appUserDAO;
+    AppUserDAO appUserDAO;
 
     @Override
     public UserDetails loadUserByUsername(String email) {
         AuthUserDetails user = new AuthUserDetails(appUserDAO.findByEmail(email));
-
-        User.withDefaultPasswordEncoder().username("user").password("user").roles("USER").build();
+        User.withDefaultPasswordEncoder().username(user.getUsername()).password(user.getPassword()).authorities(user.getAuthorities()).build();
         return user;
     }
 }

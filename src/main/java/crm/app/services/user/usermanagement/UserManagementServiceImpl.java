@@ -1,6 +1,6 @@
-package crm.app.services.user;
+package crm.app.services.user.usermanagement;
 
-import crm.app.data.dao.interfaces.IAppUserDAO;
+import crm.app.data.dao.interfaces.AppUserDAO;
 import crm.app.data.model.AppUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,12 +8,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UserService implements IUserService {
+public class UserManagementServiceImpl implements UserManagementService {
 
-    private final IAppUserDAO appUserDAO;
+    private final AppUserDAO appUserDAO;
 
     @Autowired
-    public UserService(IAppUserDAO appUserDAO) {
+    public UserManagementServiceImpl(AppUserDAO appUserDAO) {
         this.appUserDAO = appUserDAO;
     }
 

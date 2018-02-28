@@ -1,9 +1,10 @@
 package crm.app.services.registration;
 
 import crm.app.configuration.security.PasswordEncoderConfig;
-import crm.app.data.dao.interfaces.IAppUserDAO;
+import crm.app.data.dao.interfaces.AppUserDAO;
 import crm.app.services.user.exception.InvalidCredentialsException;
-import crm.app.services.user.registration.IRegistrationService;
+import crm.app.services.user.registration.RegistrationService;
+import crm.app.services.user.registration.RegistrationServiceImpl;
 import crm.app.services.user.registration.RegistrationUserDTO;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,14 +18,14 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {IRegistrationService.class, IAppUserDAO.class, PasswordEncoderConfig.class})
-public class RegistrationServiceTest {
+@ContextConfiguration(classes = {RegistrationServiceImpl.class, AppUserDAO.class, PasswordEncoderConfig.class})
+public class RegistrationServiceImplTest {
 
     @Autowired
-    IRegistrationService registrationService;
+    RegistrationService registrationService;
 
     @MockBean
-    IAppUserDAO appUserDAO;
+    AppUserDAO appUserDAO;
 
     @Before
     public void setUp() {

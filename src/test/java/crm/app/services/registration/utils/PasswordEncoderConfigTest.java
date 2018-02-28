@@ -24,11 +24,9 @@ public class PasswordEncoderConfigTest {
     @Test
     public void test() {
         String password = "password";
-        String encodedPassword = null;
+        String encodedPassword;
         encodedPassword = passwordEncoder.encode(password);
-        for (int i = 0; i < 10; i++) {
-            System.out.println(passwordEncoder.encode(password));
-        }
-        Assert.assertEquals(passwordEncoder.encode(password), encodedPassword);
+        System.out.println("encoded password" + encodedPassword);
+        Assert.assertTrue(passwordEncoder.matches(password, encodedPassword));
     }
 }
