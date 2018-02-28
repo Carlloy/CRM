@@ -1,6 +1,6 @@
 package crm.app.services.registration;
 
-import crm.app.configuration.PasswordEncoderConfig;
+import crm.app.configuration.security.PasswordEncoderConfig;
 import crm.app.data.dao.AppUserDAO;
 import crm.app.services.user.exception.InvalidCredentialsException;
 import crm.app.services.user.registration.RegistrationService;

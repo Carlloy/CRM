@@ -5,8 +5,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.junit.Assert;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class DBConnectionTest {
+    @Autowired
+    SessionFactory sessionFactory;
+
     @Test
     public void connection_test() {
         SessionFactory sessionFactory = new Configuration().

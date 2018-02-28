@@ -1,8 +1,10 @@
 package crm.app.data.dao.abstraction;
 
+import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.List;
 
+@Transactional
 public interface IDAO<T extends Serializable> {
     T findById(Long id);
 

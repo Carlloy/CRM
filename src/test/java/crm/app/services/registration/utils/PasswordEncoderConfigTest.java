@@ -1,6 +1,6 @@
 package crm.app.services.registration.utils;
 
-import crm.app.configuration.PasswordEncoderConfig;
+import crm.app.configuration.security.PasswordEncoderConfig;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

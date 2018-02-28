@@ -8,6 +8,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+
 @Repository
 public class AppUserDAO extends AbstractDAO<AppUser> {
 
@@ -17,27 +18,21 @@ public class AppUserDAO extends AbstractDAO<AppUser> {
 
     public Boolean isEmailExists(String email) {
         Long result;
-        try {
-            beginTransaction();
-            CriteriaBuilder criteriaBuilder = getSession().getCriteriaBuilder();
-            CriteriaQuery<Long> criteriaQuery = criteriaBuilder.createQuery(Long.class);
-            Root<AppUser> appUser = criteriaQuery.from(AppUser.class);
-            criteriaQuery.select(criteriaBuilder.count(appUser))
-                    .where(criteriaBuilder.equal(appUser.get("email"), email));
-            result = getSession().createQuery(criteriaQuery).getSingleResult();
-        } finally {
-            sessionClose();
-        }
+        CriteriaBuilder criteriaBuilder = sessionFactory.getCriteriaBuilder();
+        CriteriaQuery<Long> criteriaQuery = criteriaBuilder.createQuery(Long.class);
+        Root<AppUser> appUser = criteriaQuery.from(AppUser.class);
+        criteriaQuery.select(criteriaBuilder.count(appUser))
+                .where(criteriaBuilder.equal(appUser.get("email"), email));
+        result = sessionFactory.getCurrentSession().createQuery(criteriaQuery).getSingleResult();
         return (result == 1) ? Boolean.TRUE : Boolean.FALSE;
     }
 
     public AppUser findByEmail(String email) {
-        beginTransaction();
-        CriteriaBuilder criteriaBuilder = getSession().getCriteriaBuilder();
+        CriteriaBuilder criteriaBuilder = sessionFactory.getCriteriaBuilder();
         CriteriaQuery<AppUser> criteriaQuery = criteriaBuilder.createQuery(AppUser.class);
         Root<AppUser> appUser = criteriaQuery.from(AppUser.class);
         criteriaQuery.where(criteriaBuilder.equal(appUser.get("email"), email));
-        return getSession().createQuery(criteriaQuery).getSingleResult();
+        return sessionFactory.getCurrentSession().createQuery(criteriaQuery).getSingleResult();
     }
 
 }

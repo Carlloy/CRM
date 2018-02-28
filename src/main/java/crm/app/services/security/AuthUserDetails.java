@@ -1,4 +1,4 @@
-package crm.app.configuration.security;
+package crm.app.services.security;
 
 import crm.app.data.model.AppUser;
 import org.springframework.security.core.GrantedAuthority;
@@ -14,7 +14,7 @@ public class AuthUserDetails implements UserDetails {
     private static final String userBlocked = "BLOCKED";
     private final String userName;
     private final String password;
-    List<GrantedAuthority> authorities;
+    private List<GrantedAuthority> authorities;
 
     public AuthUserDetails(AppUser appUser) {
         this.userName = appUser.getEmail();

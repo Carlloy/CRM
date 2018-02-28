@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@RequestMapping(value = "/user")
 @RestController
 public class RegistrationController {
 
@@ -35,7 +36,7 @@ public class RegistrationController {
     }
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
-    public List<AppUser> getUsers(@RequestBody RegistrationUserDTO userDTO) throws InvalidCredentialsException {
+    public List<AppUser> getUsers() throws InvalidCredentialsException {
         return userService.getAll();
     }
 

@@ -1,90 +1,55 @@
 package crm.app.data.dao.abstraction;
 
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
 import java.io.Serializable;
 import java.util.List;
 
-public abstract class AbstractDAO<T extends Serializable> extends HibernateSession<T> implements IDAO<T> {
+public abstract class AbstractDAO<T extends Serializable> implements IDAO<T> {
+
+    @Autowired
+    protected SessionFactory sessionFactory;
+
+    protected Class<T> entityClass;
 
     public AbstractDAO(Class<T> entityClass) {
-        super(entityClass);
+        this.entityClass = entityClass;
     }
 
     @Override
     public T findById(Long id) {
-        T entity = null;
-        try {
-            beginTransaction();
-            entity = getSession().get(entityClass, id);
-        } finally {
-            sessionClose();
-        }
-        return entity;
+        return sessionFactory.getCurrentSession().get(entityClass, id);
     }
 
 
     @Override
-    @SuppressWarnings("unchecked")
     public List<T> findAll() {
-        List<T> entities = null;
-        try {
-            beginTransaction();
-            entities = getSession().createQuery("From " + entityClass.getName()).getResultList();
-        } finally {
-            sessionClose();
-        }
-        return entities;
+        CriteriaBuilder criteriaBuilder = sessionFactory.getCriteriaBuilder();
+        CriteriaQuery<T> criteriaQuery = criteriaBuilder.createQuery(entityClass);
+        return sessionFactory.getCurrentSession().createQuery(criteriaQuery).getResultList();
     }
 
     @Override
     public void create(T object) {
-        try {
-            beginTransaction();
-            getSession().save(object);
-            transactionCommit();
-        } catch (Exception e) {
-            transactionRollback();
-        } finally {
-            sessionClose();
-        }
+        sessionFactory.getCurrentSession().save(object);
     }
 
     @Override
     public void update(T object) {
-        try {
-            beginTransaction();
-            getSession().update(object);
-            transactionCommit();
-        } catch (Exception e) {
-            transactionRollback();
-        } finally {
-            sessionClose();
-        }
+        sessionFactory.getCurrentSession().update(object);
     }
 
     @Override
     public void createOrUpdate(T object) {
-        try {
-            beginTransaction();
-            getSession().saveOrUpdate(object);
-            transactionCommit();
-        } catch (Exception e) {
-            transactionRollback();
-        } finally {
-            sessionClose();
-        }
+        sessionFactory.getCurrentSession().saveOrUpdate(object);
     }
 
     @Override
     public void delete(T object) {
-        try {
-            beginTransaction();
-            getSession().delete(object);
-            transactionCommit();
-        } catch (Exception e) {
-            transactionRollback();
-        } finally {
-            sessionClose();
-        }
+        sessionFactory.getCurrentSession().delete(object);
     }
 
     @Override
