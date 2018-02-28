@@ -26,7 +26,7 @@ public class AppUser implements Serializable {
     @Column(nullable = false, length = 25, unique = true)
     private String email;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Role> role;
 
     public Long getId() {
