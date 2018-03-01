@@ -11,7 +11,7 @@ import java.util.List;
 
 public class AuthUserDetails implements UserDetails {
 
-    private static final String USER_BLOCKED = "BLOCKED";
+    private static final String USER_BLOCKED = "ROLE_BLOCKED";
     private final String userName;
     private final String password;
     private List<GrantedAuthority> authorities;
