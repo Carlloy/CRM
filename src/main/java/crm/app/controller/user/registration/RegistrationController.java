@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RequestMapping(value = "/api")
+@RequestMapping(value = "/")
 @RestController
 public class RegistrationController {
 
@@ -35,7 +35,12 @@ public class RegistrationController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    @RequestMapping(value = "/hello", method = RequestMethod.GET)
+    public String hello() {
+        return "HI";
+    }
+
+    @RequestMapping(value = "/api/users", method = RequestMethod.GET)
     public List<AppUser> getUsers() throws InvalidCredentialsException {
         return userService.getAll();
     }

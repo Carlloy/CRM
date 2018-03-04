@@ -24,9 +24,7 @@ public class PasswordEncoderConfigTest {
     @Test
     public void test() {
         String password = "password";
-        String encodedPassword;
-        encodedPassword = passwordEncoder.encode(password);
-        System.out.println("encoded password" + encodedPassword);
-        Assert.assertTrue(passwordEncoder.matches(password, encodedPassword));
+        System.out.println("haslo " + passwordEncoder.encode("secure"));
+        Assert.assertTrue(passwordEncoder.matches(password, "$2a$10$9pJNjyj/800iO5CC8U6SHu8zHvhe1jvwX0rn4p973394geOQ26UNS"));
     }
 }
