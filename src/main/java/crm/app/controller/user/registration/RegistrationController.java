@@ -34,11 +34,7 @@ public class RegistrationController {
         registrationService.registration(userDTO);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
-/*
-    @RequestMapping(value = "/hello", method = RequestMethod.GET)
-    public String hello() {
-        return "HI";
-    }*/
+
 
     @RequestMapping(value = "/api/users", method = RequestMethod.GET)
     public List<AppUser> getUsers() throws InvalidCredentialsException {
