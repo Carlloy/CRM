@@ -16,6 +16,7 @@ public class CrmApplication {
         SpringApplication.run(CrmApplication.class, args);
     }
 
+
     @Autowired
     public void authenticationManager(AuthenticationManagerBuilder builder, AppUserDetailsService userDetailsService) throws Exception {
         builder.userDetailsService(s -> userDetailsService.loadUserByUsername(s));

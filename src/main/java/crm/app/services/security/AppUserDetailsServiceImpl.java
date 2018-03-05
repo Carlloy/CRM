@@ -19,7 +19,7 @@ public class AppUserDetailsServiceImpl implements AppUserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) {
         AuthUserDetails user = new AuthUserDetails(appUserDAO.findByEmail(email));
-        return User.withDefaultPasswordEncoder().username(user.getUsername()).password(user.getPassword()).authorities(user.getAuthorities()).build();
+        return User.withUsername(user.getUsername()).password("{bcrypt}" + user.getPassword()).authorities(user.getAuthorities()).build();
     }
 
 }
