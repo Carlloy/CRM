@@ -41,7 +41,7 @@ public class UserManagementServiceImplTest {
 
     @Test
     public void ifNewPasswordsAreEqualReturnTrue() throws Exception {
-        ChangePasswordDTO changePasswordDTO = new ChangePasswordDTO("", "", "Password123", "Password123");
+        ChangePasswordDTO changePasswordDTO = new ChangePasswordDTO("", "Password123", "Password123", "Password123");
         userManagementService.changePassword(changePasswordDTO);
     }
 
