@@ -1,15 +1,15 @@
 package crm.app.services.user.usermanagement;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ChangePasswordDTO {
     private String email;
     private String oldPassword;
     private String newPassword;
     private String confirmPassword;
 
-    public ChangePasswordDTO(@JsonProperty("email") String email, @JsonProperty("oldPassword") String oldPassword,
-                             @JsonProperty("newPassword") String newPassword, @JsonProperty("confirmPassword") String confirmPassword) {
+    public ChangePasswordDTO(String email, String oldPassword, String newPassword, String confirmPassword) {
         this.email = email;
         this.oldPassword = oldPassword;
         this.newPassword = newPassword;

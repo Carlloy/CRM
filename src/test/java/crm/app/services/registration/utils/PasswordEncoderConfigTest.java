@@ -26,5 +26,6 @@ public class PasswordEncoderConfigTest {
         String password = "password";
         System.out.println("haslo " + passwordEncoder.encode("secure"));
         Assert.assertTrue(passwordEncoder.matches(password, "$2a$10$9pJNjyj/800iO5CC8U6SHu8zHvhe1jvwX0rn4p973394geOQ26UNS"));
+        // Assert.assertTrue(passwordEncoder.matches("$2a$10$9pJNjyj/800iO5CC8U6SHu8zHvhe1jvwX0rn4p973394geOQ26UNS", password));
     }
 }

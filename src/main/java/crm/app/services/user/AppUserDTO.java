@@ -1,24 +1,22 @@
 package crm.app.services.user;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.Objects;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class AppUserDTO {
     private String name;
     private String surname;
     private String password;
     private String email;
 
-    public AppUserDTO(@JsonProperty("name") String name, @JsonProperty("surname") String surname,
-                      @JsonProperty("password") String password, @JsonProperty("email") String email) {
+    public AppUserDTO(String name, String surname, String password, String email) {
         this.name = name;
         this.surname = surname;
-        this.email = email;
         this.password = password;
-
+        this.email = email;
     }
-
 
     public String getName() {
         return name;

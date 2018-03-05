@@ -1,9 +1,10 @@
 package crm.app.services.user.registration;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.Objects;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class RegistrationUserDTO {
     private String name;
     private String surname;
@@ -11,8 +12,7 @@ public class RegistrationUserDTO {
     private String password;
     private String confirmPassword;
 
-    public RegistrationUserDTO(@JsonProperty("name") String name, @JsonProperty("surname") String surname,
-                               @JsonProperty("email") String email, @JsonProperty("password") String password, @JsonProperty("confirmPassword") String confirmPassword) {
+    public RegistrationUserDTO(String name, String surname, String email, String password, String confirmPassword) {
         this.name = name;
         this.surname = surname;
         this.email = email;
@@ -42,8 +42,12 @@ public class RegistrationUserDTO {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         RegistrationUserDTO userDTO = (RegistrationUserDTO) o;
         return Objects.equals(name, userDTO.name) &&
                 Objects.equals(surname, userDTO.surname) &&
