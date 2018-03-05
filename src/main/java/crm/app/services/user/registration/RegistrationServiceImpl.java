@@ -26,10 +26,10 @@ public class RegistrationServiceImpl implements RegistrationService {
     @Override
     public void registration(RegistrationUserDTO userDTO) throws InvalidCredentialsException {
         AppUser appUser = new AppUser();
-        EmailValidator.isEmailCorrect(userDTO);
-        EmailValidator.isEmailUsed(appUserDAO, userDTO);
-        PasswordValidator.isPasswordValid(userDTO);
-        PasswordValidator.isPasswordConfirmed(userDTO);
+        EmailValidator.isEmailCorrect(userDTO.getEmail());
+        EmailValidator.isEmailUsed(appUserDAO, userDTO.getEmail());
+        PasswordValidator.isPasswordValid(userDTO.getPassword());
+        PasswordValidator.isPasswordConfirmed(userDTO.getPassword(), userDTO.getConfirmPassword());
         ValueValidator.isValue("user name", userDTO.getName());
         ValueValidator.isValue("user surname", userDTO.getSurname());
         appUser.setName(userDTO.getName());

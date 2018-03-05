@@ -11,4 +11,6 @@ public interface UserManagementService {
 
     List<AppUser> getAll();
 
+    void changePassword(ChangePasswordDTO changePasswordDTO) throws Exception;
+
 }

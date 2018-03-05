@@ -14,22 +14,24 @@ public class PasswordValidatorTest {
 
     @Test(expected = InvalidPasswordException.class)
     public void when_password_is_incorrect() throws InvalidPasswordException {
-        PasswordValidator.isPasswordValid(new RegistrationUserDTO.UserDTOBuilder().withPassword("Hasłobezliczb").build());
+        PasswordValidator.isPasswordValid(new RegistrationUserDTO.UserDTOBuilder().withPassword("Hasłobezliczb").build().getPassword());
     }
 
     @Test
     public void when_password_is_correct() throws InvalidPasswordException {
-        PasswordValidator.isPasswordValid(new RegistrationUserDTO.UserDTOBuilder().withPassword("Hasło1234").build());
+        PasswordValidator.isPasswordValid(new RegistrationUserDTO.UserDTOBuilder().withPassword("Hasło1234").build().getPassword());
     }
 
     @Test(expected = InvalidPasswordException.class)
     public void when_passwords_are_not_equel() throws InvalidPasswordException {
-        PasswordValidator.isPasswordConfirmed(new RegistrationUserDTO.UserDTOBuilder().withPassword("Hasło123").withConfirmPassword("InneHasło123").build());
+        RegistrationUserDTO registrationUserDTO = new RegistrationUserDTO.UserDTOBuilder().withPassword("Hasło123").withConfirmPassword("InneHasło123").build();
+        PasswordValidator.isPasswordConfirmed(registrationUserDTO.getPassword(), registrationUserDTO.getConfirmPassword());
     }
 
     @Test
     public void when_passwords_are_equel() throws InvalidPasswordException {
-        PasswordValidator.isPasswordConfirmed(new RegistrationUserDTO.UserDTOBuilder().withPassword("Hasło123").withConfirmPassword("Hasło123").build());
+        RegistrationUserDTO registrationUserDTO = new RegistrationUserDTO.UserDTOBuilder().withPassword("Hasło123").withConfirmPassword("Hasło123").build();
+        PasswordValidator.isPasswordConfirmed(registrationUserDTO.getPassword(), registrationUserDTO.getConfirmPassword());
     }
 
 }
