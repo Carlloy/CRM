@@ -23,6 +23,7 @@ public class AuthUserDetails implements UserDetails {
         appUser.getRole().forEach(role -> authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getName().toUpperCase())));
     }
 
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;

@@ -20,6 +20,29 @@ public class RegistrationUserDTO {
         this.confirmPassword = confirmPassword;
     }
 
+    public RegistrationUserDTO() {
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
+
     public String getName() {
         return name;
     }
@@ -67,6 +90,7 @@ public class RegistrationUserDTO {
         private String email;
         private String password;
         private String confirmPassword;
+
 
         public UserDTOBuilder() {
         }

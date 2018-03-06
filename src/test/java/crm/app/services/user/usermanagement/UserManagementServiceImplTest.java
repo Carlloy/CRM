@@ -4,6 +4,7 @@ import crm.app.configuration.security.PasswordEncoderConfig;
 import crm.app.data.dao.interfaces.AppUserDAO;
 import crm.app.data.model.AppUser;
 import crm.app.services.user.exception.InvalidPasswordException;
+import crm.app.services.user.usermanagement.dto.ChangePasswordDTO;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

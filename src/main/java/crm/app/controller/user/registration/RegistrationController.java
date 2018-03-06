@@ -1,6 +1,5 @@
 package crm.app.controller.user.registration;
 
-import crm.app.data.model.AppUser;
 import crm.app.services.user.exception.InvalidCredentialsException;
 import crm.app.services.user.registration.RegistrationService;
 import crm.app.services.user.registration.RegistrationUserDTO;
@@ -12,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RequestMapping(value = "/")
 @RestController
@@ -33,12 +30,6 @@ public class RegistrationController {
     public ResponseEntity<String> registerUser(@RequestBody RegistrationUserDTO userDTO) throws InvalidCredentialsException {
         registrationService.registration(userDTO);
         return ResponseEntity.status(HttpStatus.CREATED).build();
-    }
-
-
-    @RequestMapping(value = "/api/users", method = RequestMethod.GET)
-    public List<AppUser> getUsers() throws InvalidCredentialsException {
-        return userService.getAll();
     }
 
 

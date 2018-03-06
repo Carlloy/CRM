@@ -3,6 +3,7 @@ package crm.app.services.user.usermanagement;
 import crm.app.data.dao.interfaces.AppUserDAO;
 import crm.app.data.model.AppUser;
 import crm.app.services.user.exception.InvalidPasswordException;
+import crm.app.services.user.usermanagement.dto.ChangePasswordDTO;
 import crm.app.services.user.utils.PasswordValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
