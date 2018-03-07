@@ -4,7 +4,9 @@ import crm.app.configuration.security.PasswordEncoderConfig;
 import crm.app.data.dao.interfaces.AppUserDAO;
 import crm.app.data.model.AppUser;
 import crm.app.services.user.exception.InvalidPasswordException;
-import crm.app.services.user.usermanagement.dto.ChangePasswordDTO;
+import crm.app.services.user.exception.InvalidValueException;
+import crm.app.services.user.usermanagement.dto.UserDetailsDTO;
+import crm.app.services.user.usermanagement.dto.UserPasswordDTO;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -36,19 +38,31 @@ public class UserManagementServiceImplTest {
 
     @Test(expected = InvalidPasswordException.class)
     public void ifNewPasswordsAreNotEqualsRaiseException() throws Exception {
-        ChangePasswordDTO changePasswordDTO = new ChangePasswordDTO("", "", "Password123", "Pass1456");
-        userManagementService.changePassword(changePasswordDTO);
+        UserPasswordDTO changeUserPasswordDTO = new UserPasswordDTO("", "", "Password123", "Pass1456");
+        userManagementService.changePassword(changeUserPasswordDTO);
     }
 
     @Test
     public void ifNewPasswordsAreEqualReturnTrue() throws Exception {
-        ChangePasswordDTO changePasswordDTO = new ChangePasswordDTO("", "Password123", "Password123", "Password123");
-        userManagementService.changePassword(changePasswordDTO);
+        UserPasswordDTO changeUserPasswordDTO = new UserPasswordDTO("", "Password123", "Password123", "Password123");
+        userManagementService.changePassword(changeUserPasswordDTO);
     }
 
     @Test(expected = InvalidPasswordException.class)
     public void ifOldPasswordIsWrongRaiseException() throws Exception {
-        ChangePasswordDTO changePasswordDTO = new ChangePasswordDTO("", "$2a$10$9pJNjyj/800iO5CC8U6SHu8zHvhe1jvwX0rn4p973394geOQ26UKR", "Password123", "Password123");
-        userManagementService.changePassword(changePasswordDTO);
+        UserPasswordDTO userPasswordDTO = new UserPasswordDTO("", "$2a$10$9pJNjyj/800iO5CC8U6SHu8zHvhe1jvwX0rn4p973394geOQ26UKR", "Password123", "Password123");
+        userManagementService.changePassword(userPasswordDTO);
+    }
+
+    @Test(expected = InvalidValueException.class)
+    public void ifSomeDetailIsNullorEmptyRaiseException() throws Exception {
+        UserDetailsDTO userDetailsDTO = new UserDetailsDTO("", "Nowak", "");
+        userManagementService.changeUserDetails(userDetailsDTO);
+    }
+
+    @Test
+    public void ifNewDetailsAreRightReturnTrue() throws Exception {
+        UserDetailsDTO userDetailsDTO = new UserDetailsDTO("Jan", "Nowak", "");
+        userManagementService.changeUserDetails(userDetailsDTO);
     }
 }

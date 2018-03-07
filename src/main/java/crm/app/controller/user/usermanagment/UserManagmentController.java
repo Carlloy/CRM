@@ -2,11 +2,11 @@ package crm.app.controller.user.usermanagment;
 
 import crm.app.data.model.AppUser;
 import crm.app.services.user.usermanagement.UserManagementService;
-import crm.app.services.user.usermanagement.dto.ChangePasswordDTO;
+import crm.app.services.user.usermanagement.dto.UserDetailsDTO;
+import crm.app.services.user.usermanagement.dto.UserPasswordDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationDetailsSource;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,11 +30,20 @@ public class UserManagmentController {
     public List<AppUser> getUsers() {
         return userManagementService.getAll();
     }
+
     @RequestMapping(value = "/changepassword", method = RequestMethod.PUT)
-    public ResponseEntity<String> changePassword(@RequestBody ChangePasswordDTO changePasswordDTO) throws Exception {
+    public ResponseEntity<String> changePassword(@RequestBody UserPasswordDTO userPasswordDTO) throws Exception {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        changePasswordDTO.setEmail(authentication.getName());
-        userManagementService.changePassword(changePasswordDTO);
+        userPasswordDTO.setEmail(authentication.getName());
+        userManagementService.changePassword(userPasswordDTO);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).build();
+    }
+
+    @RequestMapping(value = "/changedetails", method = RequestMethod.PUT)
+    public ResponseEntity<String> changeDetails(@RequestBody UserDetailsDTO userDetailsDTO) throws Exception {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        userDetailsDTO.setEmail(authentication.getName());
+        userManagementService.changeUserDetails(userDetailsDTO);
         return ResponseEntity.status(HttpStatus.ACCEPTED).build();
     }
 }
